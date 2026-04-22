@@ -8,17 +8,17 @@ def is_valid(isbn):
         return False
         
     total = 0
-    for i in range(10):
-        char = clean_isbn[i]
+    for index in range(10):
+        char = clean_isbn[index]
         
         if char.isdigit():
             value = int(char)
-        elif char in "xX" and i == 9: # 'X' is only valid at the 10th position
+        elif char in "xX" and index == 9: # 'X' is only valid at the 10th position
             value = 10
         else:
             # If we find a letter anywhere else, or a non-X at the end
             return False
             
-        total += (10 - i) * value
+        total += (10 - index) * value
         
     return total % 11 == 0
