@@ -4,19 +4,23 @@ def rebase(input_base, digits, output_base):
 
     if input_base < 2 :
         raise ValueError("input base must be >= 2")
-    if not any(0 <= int(digit) < input_base for digit in str(digits)):
+    if not all(0 <= digit < input_base for digit in digits):
             raise ValueError("all digits must satisfy 0 <= d < input base")
     if output_base < 2 :
         raise ValueError("output base must be >= 2")
 
     base_10 = 0
-    temp = digits  
-    output = 0 
-    index = 0
-    while digits != 0 :
-        base_10+=digits % 10 * input_base ** index
-        digits = int(digits/10) 
-        index += 1
-    return base_10
+    output = [] 
+    for index,digit in enumerate(digits[::-1]):
+        base_10+=digit*input_base**index
+    
+    if base_10 == 0 : return [0]
 
-print(rebase(2, 10001, 10))
+    while base_10 != 0 :
+        output.append(base_10 % output_base)
+        base_10 =int(base_10 / output_base)
+
+    return output[::-1]
+
+
+print(rebase(2, [1,0,0] , 10))
