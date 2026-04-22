@@ -1,6 +1,6 @@
-import re
-from string import ascii_lowercase,ascii_uppercase
 """ crypto using rotcipher""" 
+
+from string import ascii_lowercase,ascii_uppercase
 def rotate(text, key):
     """ crypto usin grotcipher""" 
     key = key % 26
